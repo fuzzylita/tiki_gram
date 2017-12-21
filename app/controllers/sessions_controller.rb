@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:create]
+
   def create
     @user = User.find_or_create_by(instagram_id: auth['uid']) do |u|
       u.username = auth['info']['nickname']
