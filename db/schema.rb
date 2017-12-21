@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221202350) do
+ActiveRecord::Schema.define(version: 20171221210632) do
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
     t.string "image_id"
-    t.string "tag"
-    t.text "image"
+    t.string "tags"
+    t.text "images"
     t.datetime "created_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "instagram_id"
+    t.string "profile_picture"
   end
 
 end
