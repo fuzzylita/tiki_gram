@@ -12,7 +12,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux'; // we will use these when we encorporate redux
 import { Provider } from 'react-redux';
 
-import sessionReducer from './reducers/sessionReducer'
+import sessionReducer from './reducers/session_reducer'
 import App from './components/app'
 
 const store = createStore(
@@ -25,6 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <App store={store}/>
     </Provider>,
-    document.body
+    document.getElementById('app')
   )
 })
