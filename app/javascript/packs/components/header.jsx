@@ -10,7 +10,7 @@ const Header = (props) => {
         <a id="logo" href="/">Tikigram</a>
         <nav>
           <ul className="nav navbar-nav navbar-right">
-            { props.isLoggedIn ? <ProfileInfo /> : <Login /> }
+            { props.isLoggedIn ? <ProfileInfo currentUser={props.currentUser}/> : <Login /> }
           </ul>
         </nav>
       </div>
