@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def login
-    login_path = "https://api.instagram.com/oauth/authorize/?client_id=#{ENV['INSTAGRAM_ID']}&redirect_uri=#{ENV['REDIRECT_HOST']}/auth/instagram/callback&response_type=code"
+    login_path = "https://api.instagram.com/oauth/authorize/?client_id=#{ENV['INSTAGRAM_ID']}&redirect_uri=#{ENV['REDIRECT_HOST']}/auth/instagram/callback&response_type=code&scope=basic+public_content"
     redirect_to login_path
   end
 
