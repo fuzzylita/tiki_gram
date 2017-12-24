@@ -13,7 +13,7 @@ import { createStore } from 'redux'; // we will use these when we encorporate re
 import { Provider } from 'react-redux';
 
 import sessionReducer from './reducers/session_reducer'
-import App from './components/app'
+import App from './containers/app'
 
 const store = createStore(
   sessionReducer,
