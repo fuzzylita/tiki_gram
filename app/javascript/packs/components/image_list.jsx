@@ -1,19 +1,26 @@
 import React from 'react'
-import Image from './image'
+import Gallery from 'react-photo-gallery'
+import { connect } from 'react-redux'
 
 const ImageList = (props) => {
-  
   const tikiPics = props.images.map((img) => {
-    return <Image key={img.id} image_data={img}/>
+    return {src: img.images.low_resolution.url}
   }) 
 
 
   return(
     <div>
-      <h1>Welcome to pictures of Tiki</h1>
-      { tikiPics }
+      <h1>Welcome to Tiki-Gram</h1>
+      <Gallery photos={tikiPics}/>
     </div>
   )
 }
 
-export default ImageList
+const mapStateToProps = (state) => {
+  return {
+    fetchingData: state.images.fetchingData,
+    images: state.images.images
+   }
+}
+
+export default connect(mapStateToProps)(ImageList)
