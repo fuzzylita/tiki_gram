@@ -9,21 +9,29 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux'; // we will use these when we encorporate redux
+import { applyMiddleware, createStore, combineReducers } from 'redux'; // we will use these when we encorporate redux
 import { Provider } from 'react-redux';
 
+//allows dispatch to take in a fxn instead of an obj
+import thunk from 'redux-thunk' 
+
 import sessionReducer from './reducers/session_reducer'
+import imageReducer from './reducers/image_reducer'
 import App from './containers/app'
 
 const store = createStore(
-  sessionReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  combineReducers({
+    session: sessionReducer,
+    images: imageReducer
+  }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
 );
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Provider store={store}>
-      <App store={store}/>
+      <App />
     </Provider>,
     document.getElementById('app')
   )
