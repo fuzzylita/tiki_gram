@@ -7,7 +7,8 @@
     },
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "experimentalObjectRestSpread": true
         },
         "sourceType": "module"
     },
@@ -15,6 +16,7 @@
         "react"
     ],
     "rules": {
+        "react/prop-types": "warn",
         "no-const-assign": "warn",
         "no-this-before-super": "warn",
         "no-undef": "warn",
