@@ -11,8 +11,8 @@ import ImageDetail from './image_detail'
 import { setSession } from '../actions'
 
 class App extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   componentDidMount() {
