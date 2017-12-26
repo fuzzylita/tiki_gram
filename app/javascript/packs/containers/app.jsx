@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from '../components/header'
 import Footer from '../components/footer'
 import ImageList from '../components/image_list'
-import Image from './image'
+import ImageDetail from './image_detail'
 
 import { setSession } from '../actions'
 
@@ -25,9 +25,12 @@ class App extends React.Component {
         <div>
           <Header isLoggedIn={this.props.isLoggedIn} currentUser={this.props.userInfo}/>
           <div className="container">
-            <Route path="/" component={ImageList} />
-            {/* <Route path="/" component={FindTikis} />*/}
-            <Route path="/image" component={Image} />
+            <Switch>
+              <Route exact path="/" component={ImageList} />
+              {/* <Route path="/" component={FindTikis} />*/}
+              <Route path="/image/:id" component={ImageDetail} />
+              <Redirect to="/" />
+            </Switch>
             <Footer />
           </div>
         </div>
