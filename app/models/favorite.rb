@@ -1,4 +1,5 @@
 class Favorite < ApplicationRecord
-  serialize :images, :tags
+  serialize :images
+  serialize :tags
   belongs_to :user
 end
