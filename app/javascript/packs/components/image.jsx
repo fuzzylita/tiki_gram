@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom'
 
 const Image = (props) => {
   return(
-    <div>
-      <Link to={`/image/${props.photo.id}`} >
-        <img src={props.photo.src} />
-      </Link>
-    </div>
+    <Link className="gallery-image" to={`/image/${props.photo.id}`} >
+      <img src={props.photo.src} />
+    </Link>
   )
 }
 
