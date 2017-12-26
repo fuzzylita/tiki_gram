@@ -1,6 +1,7 @@
 const initialState = {
   fetchingData: false,
-  images: []
+  images: [],
+  currentImage: {}
 }
 
 function imageReducer(state = initialState, action){      
@@ -16,6 +17,24 @@ function imageReducer(state = initialState, action){
         ...state,
         fetchingData: false, 
         images: action.images
+      }
+    case 'REQUEST_IMAGE':
+      return {
+        ...state,
+        fetchingData: true
+      }
+    case 'RECEIVE_IMAGE': 
+  // this case should receive a payload containing the image data
+      return {
+        ...state,
+        fetchingData: false, 
+        currentImage: action.currentImage
+      }
+    case 'CLEAR_IMAGE':
+      return {
+        ...state,
+        fetchingData: false,
+        currentImage: {}
       }
     default:
       return state;
