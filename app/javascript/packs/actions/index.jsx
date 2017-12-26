@@ -1,6 +1,6 @@
 import fetchJsonp from 'fetch-jsonp'
 const TIKI_IMAGE_URL = `https://api.instagram.com/v1/users/5798671360/media/recent/?access_token=`
-
+const BASE_URL = `https://api.instagram.com/v1/media/`
 
 // actions for session reducer
 
@@ -60,6 +60,45 @@ export const getImages = (dispatch, getState) => {
         })
         dispatch(receiveImages(images))
       })
+}
+
+// Recieve a single image
+const requestImage = () => {
+  return {type: 'REQUEST_IMAGE'}
+}
+
+// receiving the images
+const receiveImage = (image) => {
+  return {
+    type: 'RECEIVE_IMAGE',
+    currentImage: image
+  }
+}
+
+export const clearImage = () => {
+  return {type: 'CLEAR_IMAGE'}
+}
+
+export const getImage = (id) => {
+  return function(dispatch, getState) {
+    dispatch(requestImage())
+    fetchJsonp(BASE_URL + id + '?access_token=' + getState().session.userInfo.access_token)
+    .then((resp) => resp.json())
+    .then((body) => {
+      dispatch(receiveImage(body.data))
+    })
+  }
+}
+
+// actions for favorites page
+export const getFavorites = (dispatch, getState) => {
+  return fetch('/favorites', {credentials: 'same-origin'})
+    .then((resp) => resp.json())
+    .then((favorites) => {
+      // TODO store the favorites to...the store
+    }).catch((err) => {
+      // TODO dispatch some error event?
+    }) 
 }
 
 
