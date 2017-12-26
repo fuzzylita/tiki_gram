@@ -8,7 +8,7 @@ const ProfileInfo = (props) => {
     // here and in login.
 
     <React.Fragment>
-      <li><a href="/user">{props.currentUser.username}</a></li>
+      <li><a href="#">{props.currentUser.username}</a></li>
       <li><img src={props.currentUser.profile_picture} id="profile_picture"/></li>
       <li><a href="/logout">Log Out 👋</a></li>
     </React.Fragment>
