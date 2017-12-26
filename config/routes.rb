@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#logout'
 
   root 'application#index'
+  get '*path', to: 'application#index'
 end
