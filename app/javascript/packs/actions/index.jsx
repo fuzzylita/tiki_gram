@@ -91,13 +91,31 @@ export const getImage = (id) => {
 }
 
 // actions for favorites page
+// starting the request
+const requestFavorites = () => {
+  return {type: 'REQUEST_FAVORITES'}
+}
+
+// receiving the images
+const receiveFavorites = (favorites) => {
+  return {
+    type: 'RECEIVE_FAVORITES',
+    favorites: favorites
+  }
+}
+
 export const getFavorites = (dispatch, getState) => {
-  return fetch('/favorites', {credentials: 'same-origin'})
+  dispatch(requestFavorites())
+  fetch('/favorites', {credentials: 'same-origin'})
     .then((resp) => resp.json())
-    .then((favorites) => {
-      // TODO store the favorites to...the store
-    }).catch((err) => {
-      // TODO dispatch some error event?
+      .then((data) => {
+        let favorites = data.map((fav) => {
+          return {
+            id: fav.image_id,
+            images: fav.images
+          }
+        })
+        dispatch(receiveFavorites(favorites))
     }) 
 }
 
