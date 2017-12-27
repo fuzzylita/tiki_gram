@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
+import FavoritesList from '../components/favorites_list'
 import ImageList from '../components/image_list'
 import ImageDetail from './image_detail'
 
@@ -28,8 +29,8 @@ class App extends React.Component {
           <Header isLoggedIn={this.props.isLoggedIn} currentUser={this.props.userInfo}/>
           <div className="container">
             <Switch>
-              <Route exact path="/" component={ImageList} />
-              {/* <Route path="/" component={FindTikis} />*/}
+              <Route exact path="/" component={FavoritesList} />
+              <Route path="/all" component={ImageList} />
               <Route path="/image/:id" component={ImageDetail} />
               <Redirect to="/" />
             </Switch>
