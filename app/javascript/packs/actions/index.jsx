@@ -23,7 +23,6 @@ export const setSession = (dispatch) => {
     .then((resp) => resp.json())
     .then((user) => {
       dispatch(login(user))
-      dispatch(getImages)
     }).catch((err) => {
       //if no user is returned, catch that condition and respond appropriately
       //by ensuring that there is no user set
@@ -107,7 +106,7 @@ const receiveFavorites = (favorites) => {
 export const getFavorites = (dispatch, getState) => {
   dispatch(requestFavorites())
   fetch('/favorites', {credentials: 'same-origin'})
-    .then((resp) => resp.json())
+      .then((resp) => resp.json())
       .then((data) => {
         let favorites = data.map((fav) => {
           return {
@@ -116,7 +115,7 @@ export const getFavorites = (dispatch, getState) => {
           }
         })
         dispatch(receiveFavorites(favorites))
-    }) 
+      })
 }
 
 
