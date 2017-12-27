@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
   protect_from_forgery except: [:create, :destroy]
   
   def create
-    favorite = Favorite.find_or_create_by(image_id: params[:image_id], current_user.id) do |fav|
+    favorite = Favorite.find_or_create_by(image_id: params[:image_id], user_id: current_user.id) do |fav|
       fav.user_id = current_user.id
       fav.image_id = params[:image_id]
       fav.tags = params[:tags]
@@ -29,7 +29,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    favorite = Favorite.find_or_create_by(image_id: params[:image_id], current_user.id)
+    favorite = Favorite.find_or_create_by(image_id: params[:image_id], user_id: current_user.id)
     favorite.delete
     render json: {message: "OK"}
   end
