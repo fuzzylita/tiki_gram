@@ -48,7 +48,7 @@ const receiveImages = (images) => {
 
 export const getImages = (dispatch, getState) => {
   dispatch(requestImages())
-  fetchJsonp(TIKI_IMAGE_URL + getState().session.userInfo.access_token)
+  return fetchJsonp(TIKI_IMAGE_URL + getState().session.userInfo.access_token)
       .then((resp) => resp.json())
       .then((body) => {
         let images = body.data.map((img) => {
@@ -82,7 +82,7 @@ export const clearImage = () => {
 export const getImage = (id) => {
   return function(dispatch, getState) {
     dispatch(requestImage())
-    fetchJsonp(BASE_URL + id + '?access_token=' + getState().session.userInfo.access_token)
+    return fetchJsonp(BASE_URL + id + '?access_token=' + getState().session.userInfo.access_token)
     .then((resp) => resp.json())
     .then((body) => {
       dispatch(receiveImage(body.data))
