@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -23,6 +24,7 @@ class App extends React.Component {
     return (
       <Router >
         <div>
+        <ToastContainer />
           <Header isLoggedIn={this.props.isLoggedIn} currentUser={this.props.userInfo}/>
           <div className="container">
             <Switch>
