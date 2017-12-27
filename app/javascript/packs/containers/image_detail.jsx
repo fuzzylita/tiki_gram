@@ -12,16 +12,20 @@ class ImageDetail extends React.Component {
     super(props)
   }
 
-  createFavorite(id) {
+  createFavorite(id, images) {
     return () => {
       let body = {
-        image_id: id
+        image_id: id,
+        images: images
       }
 
       fetch('/favorites', {
         method: "POST",
-        body: body,
-        credentials: 'same-origin'
+        body: JSON.stringify(body),
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
         .then((resp) => resp.json())  
         .then((body) => {
@@ -44,14 +48,17 @@ class ImageDetail extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.accessToken) {
+    if (this.props.isLoggedIn) {
       this.props.dispatch(getImage(this.props.match.params.id))
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.accessToken) {
+    if (this.props.isLoggedIn != nextProps.isLoggedIn) {
       this.props.dispatch(getImage(nextProps.match.params.id))
+      .catch(() => {
+        toast.error('Failed to fetch image')
+      })
     }
   }
 
@@ -60,17 +67,20 @@ class ImageDetail extends React.Component {
   }
 
   render() {
+    let { image, match } = this.props
+
     return (
       <div>
-        { this.props.image.images ? (
-          <img src={this.props.image.images.standard_resolution.url} />
+        { image.images ? (
+          <img src={image.images.standard_resolution.url} />
         ) : <div>loading your Tiki</div>
         }
         <div>
           <br/><br/>
+          <Link to='/all' className="btn btn-sm btn-primary">Add more Tikis</Link>
           <Link to='/' className="btn btn-sm btn-primary">Go Back</Link>
-          <button onClick={this.createFavorite(this.props.match.params.id)} className="btn btn-sm btn-primary"> ❤️ </button>
-          <button onClick={this.deleteFavorite(this.props.match.params.id)} className="btn btn-sm btn-primary"> 💔 </button>
+          <button onClick={this.createFavorite(match.params.id, image.images)} className="btn btn-sm btn-primary"> ❤️ </button>
+          <button onClick={this.deleteFavorite(match.params.id)} className="btn btn-sm btn-primary"> 💔 </button>
         </div>
       </div>
     )
@@ -79,7 +89,7 @@ class ImageDetail extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    accessToken: state.session.userInfo.access_token,
+    isLoggedIn: state.session.isLoggedIn,
     image: state.images.currentImage
   }
 }
