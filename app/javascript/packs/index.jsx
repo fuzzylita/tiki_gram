@@ -16,12 +16,14 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk' 
 
 import sessionReducer from './reducers/session_reducer'
+import favoriteReducer from './reducers/favorite_reducer'
 import imageReducer from './reducers/image_reducer'
 import App from './containers/app'
 
 const store = createStore(
   combineReducers({
     session: sessionReducer,
+    favorites: favoriteReducer,
     images: imageReducer
   }),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
