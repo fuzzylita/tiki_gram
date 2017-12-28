@@ -3,7 +3,7 @@ import Gallery from 'react-photo-gallery'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { getFavorites } from '../actions'
-import Image from './image'
+import Image from '../components/image'
 
 class FavoritesList extends React.Component {
   componentDidMount() {

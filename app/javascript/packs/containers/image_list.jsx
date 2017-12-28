@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify'
 import { getImages } from '../actions'
-import Image from './image'
+import Image from '../components/image'
 
 class ImageList extends React.Component {
   componentDidMount() {
