@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
+import User from '../components/user'
 import FavoritesList from './favorites_list'
 import ImageList from './image_list'
 import ImageDetail from './image_detail'
@@ -31,6 +32,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={FavoritesList} />
               <Route path="/all" component={ImageList} />
+              <Route path="/user_info" component={User} />
               <Route path="/image/:id" component={ImageDetail} />
               <Redirect to="/" />
             </Switch>
