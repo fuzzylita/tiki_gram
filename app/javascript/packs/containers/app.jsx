@@ -6,8 +6,8 @@ import { ToastContainer, toast } from 'react-toastify'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
-import FavoritesList from '../containers/favorites_list'
-import ImageList from '../containers/image_list'
+import FavoritesList from './favorites_list'
+import ImageList from './image_list'
 import ImageDetail from './image_detail'
 
 import { setSession } from '../actions'
