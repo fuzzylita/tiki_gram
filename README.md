@@ -1,24 +1,44 @@
-# README
+# Tikigram - React integration with Instagram
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
+A simple, React app with a Rails backend to view Instagram images of Tiki. Once signed up via OAuth, users can view a gallery of Tiki images and save them to their personal library. Favorited images can be removed from the favorites list. 
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Rails
 
-* System dependencies
+## Installation
+1. [Fork and clone](https://help.github.com/articles/cloning-a-repository/) this repository to your local environment.
 
-* Configuration
+2. Install the needed gems:
 
-* Database creation
+```
+$ bundle install
+```
 
-* Database initialization
+3. Migrate the database:
 
-* How to run the test suite
+```
+$ rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+4. You're ready to run the app in a local server. You will need to run the Rails server as well as the Webpack dev server. Open two tabs in your terminal and run the following commands
 
-* Deployment instructions
+```
+- in one tab
+$ rails server
 
-* ...
+- in the other tab
+$ webpack-dev-server
+
+```
+
+5. Navigate to http:localhost:3000 to get started.
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/fuzzylita/tiki_gram. 
+
+## License
+
+This application is available as open source under the terms of the [MIT License](https://github.com/fuzzylita/tiki_gram/blob/master/LICENSE).
