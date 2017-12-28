@@ -53,6 +53,7 @@ export const getImages = (dispatch, getState) => {
         let images = body.data.map((img) => {
           return {
             id: img.id,
+            likes: img.likes.count,
             images: img.images,
             type: img.type
           }

@@ -26,9 +26,12 @@ class ImageList extends React.Component {
   }
 
   render() {
-    const tikiPics = this.props.images.map((img) => {
+    const tikiPics = this.props.images.sort((a, b) => {
+      return b.likes - a.likes
+    }).map((img) => {
       return {
         id: img.id,
+        likes: img.likes,
         src: img.images.low_resolution.url
       }
     })
