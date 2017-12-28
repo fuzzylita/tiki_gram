@@ -11,7 +11,7 @@ const ProfileInfo = (props) => {
     <React.Fragment>
       <li><Link to="/user_info" >{props.currentUser.username}</Link></li>
       <li><img src={props.currentUser.profile_picture} id="profile_picture"/></li>
-      <li><Link to="/logout">Log Out 👋</Link></li>
+      <li><a href="/logout">Log Out 👋</a></li>
     </React.Fragment>
   )
 }
